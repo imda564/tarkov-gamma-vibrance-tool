@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using tarkov_settings.Setting;
 using tarkov_settings.GPU;
@@ -13,6 +15,23 @@ namespace tarkov_settings
         private AppSetting appSetting;
 
         private bool minimizeOnStart = false;
+
+        #region Global Hotkeys
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        private const int WM_HOTKEY = 0x0312;
+        private const uint MOD_ALT = 0x1;
+        private const uint MOD_CONTROL = 0x2;
+        private const uint MOD_SHIFT = 0x4;
+
+        private readonly Dictionary<string, int> profileHotkeyIds = new Dictionary<string, int>();
+        private readonly Dictionary<int, string> hotkeyIdToProfile = new Dictionary<int, string>();
+        private int nextHotkeyId = 100;
+        private bool awaitingHotkey = false;
+        #endregion
 
         public MainForm()
         {
@@ -60,9 +79,11 @@ namespace tarkov_settings
             pMonitor.Init();
 
             #region Initialize Profiles
-            foreach (string name in appSetting.profiles.Keys)
+            foreach (KeyValuePair<string, ColorProfile> entry in appSetting.profiles)
             {
-                ProfileCombo.Items.Add(name);
+                ProfileCombo.Items.Add(entry.Key);
+                if (entry.Value.hotkey != 0)
+                    RegisterProfileHotkey(entry.Key, entry.Value.hotkey);
             }
             #endregion
         }
@@ -183,12 +204,16 @@ namespace tarkov_settings
                 return;
             }
 
+            // Preserve an already-assigned hotkey when re-saving an existing profile
+            int existingHotkey = appSetting.profiles.TryGetValue(name, out ColorProfile existing) ? existing.hotkey : 0;
+
             appSetting.profiles[name] = new ColorProfile
             {
                 brightness = Brightness,
                 contrast = Contrast,
                 gamma = Gamma,
-                saturation = DVL
+                saturation = DVL,
+                hotkey = existingHotkey
             };
             appSetting.Save();
 
@@ -209,6 +234,7 @@ namespace tarkov_settings
             Contrast = profile.contrast;
             Gamma = profile.gamma;
             DVL = profile.saturation;
+            HotkeyText.Text = FormatHotkey((Keys)profile.hotkey);
         }
 
         private void DeleteProfileButton_Click(object sender, EventArgs e)
@@ -217,11 +243,142 @@ namespace tarkov_settings
             if (!appSetting.profiles.Remove(name))
                 return;
 
+            UnregisterProfileHotkey(name);
             appSetting.Save();
             int index = ProfileCombo.FindStringExact(name);
             if (index != -1)
                 ProfileCombo.Items.RemoveAt(index);
             ProfileCombo.Text = "";
+            HotkeyText.Text = "None";
+        }
+
+        private void ProfileCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            HotkeyText.Text = appSetting.profiles.TryGetValue(name, out ColorProfile profile)
+                ? FormatHotkey((Keys)profile.hotkey)
+                : "None";
+        }
+
+        private void SetHotkeyButton_Click(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            if (!appSetting.profiles.ContainsKey(name))
+            {
+                MessageBox.Show("Save the profile first, then assign a hotkey to it.", "Set Hotkey", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            awaitingHotkey = true;
+            HotkeyText.Text = "Press keys...";
+        }
+
+        private void ClearHotkeyButton_Click(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            if (!appSetting.profiles.TryGetValue(name, out ColorProfile profile))
+                return;
+
+            UnregisterProfileHotkey(name);
+            profile.hotkey = 0;
+            appSetting.Save();
+            HotkeyText.Text = "None";
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!awaitingHotkey)
+                return;
+
+            // Wait for an actual key, not just a modifier being held down
+            if (e.KeyCode == Keys.ControlKey || e.KeyCode == Keys.ShiftKey ||
+                e.KeyCode == Keys.Menu || e.KeyCode == Keys.LWin || e.KeyCode == Keys.RWin)
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+            awaitingHotkey = false;
+
+            string name = ProfileCombo.Text.Trim();
+            if (!appSetting.profiles.TryGetValue(name, out ColorProfile profile))
+                return;
+
+            UnregisterProfileHotkey(name);
+
+            int combo = (int)e.KeyData;
+            if (!RegisterProfileHotkey(name, combo))
+            {
+                HotkeyText.Text = "None";
+                MessageBox.Show(
+                    String.Format("\"{0}\" is already in use by another application.", FormatHotkey((Keys)combo)),
+                    "Set Hotkey", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            profile.hotkey = combo;
+            appSetting.Save();
+            HotkeyText.Text = FormatHotkey((Keys)combo);
+        }
+
+        private bool RegisterProfileHotkey(string name, int hotkeyValue)
+        {
+            if (hotkeyValue == 0)
+                return true;
+
+            Keys keys = (Keys)hotkeyValue;
+            uint modifiers = 0;
+            if ((keys & Keys.Control) == Keys.Control) modifiers |= MOD_CONTROL;
+            if ((keys & Keys.Alt) == Keys.Alt) modifiers |= MOD_ALT;
+            if ((keys & Keys.Shift) == Keys.Shift) modifiers |= MOD_SHIFT;
+            uint vk = (uint)(keys & Keys.KeyCode);
+
+            int id = nextHotkeyId++;
+            if (!RegisterHotKey(this.Handle, id, modifiers, vk))
+                return false;
+
+            profileHotkeyIds[name] = id;
+            hotkeyIdToProfile[id] = name;
+            return true;
+        }
+
+        private void UnregisterProfileHotkey(string name)
+        {
+            if (profileHotkeyIds.TryGetValue(name, out int id))
+            {
+                UnregisterHotKey(this.Handle, id);
+                profileHotkeyIds.Remove(name);
+                hotkeyIdToProfile.Remove(id);
+            }
+        }
+
+        private static string FormatHotkey(Keys keys)
+        {
+            if (keys == Keys.None)
+                return "None";
+
+            var parts = new List<string>();
+            if ((keys & Keys.Control) == Keys.Control) parts.Add("Ctrl");
+            if ((keys & Keys.Alt) == Keys.Alt) parts.Add("Alt");
+            if ((keys & Keys.Shift) == Keys.Shift) parts.Add("Shift");
+            parts.Add((keys & Keys.KeyCode).ToString());
+            return String.Join("+", parts);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_HOTKEY)
+            {
+                int id = m.WParam.ToInt32();
+                if (hotkeyIdToProfile.TryGetValue(id, out string name) &&
+                    appSetting.profiles.TryGetValue(name, out ColorProfile profile))
+                {
+                    Brightness = profile.brightness;
+                    Contrast = profile.contrast;
+                    Gamma = profile.gamma;
+                    DVL = profile.saturation;
+                }
+            }
+            base.WndProc(ref m);
         }
         #endregion
 
@@ -263,6 +420,8 @@ namespace tarkov_settings
             {
                 Console.WriteLine(e.CloseReason);
                 this.trayIcon.Dispose();
+                foreach (string name in new List<string>(profileHotkeyIds.Keys))
+                    UnregisterProfileHotkey(name);
                 Console.WriteLine("[mainForm] Closing pMonitor");
                 pMonitor.Close();
             }

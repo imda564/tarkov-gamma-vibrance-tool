@@ -41,6 +41,10 @@
             this.SaveProfileButton = new System.Windows.Forms.Button();
             this.LoadProfileButton = new System.Windows.Forms.Button();
             this.DeleteProfileButton = new System.Windows.Forms.Button();
+            this.HotkeyLabel = new System.Windows.Forms.Label();
+            this.HotkeyText = new System.Windows.Forms.TextBox();
+            this.SetHotkeyButton = new System.Windows.Forms.Button();
+            this.ClearHotkeyButton = new System.Windows.Forms.Button();
             this.DVLGroupBox = new System.Windows.Forms.GroupBox();
             this.DVLPanel = new System.Windows.Forms.Panel();
             this.DVLLabel = new System.Windows.Forms.Label();
@@ -111,7 +115,7 @@
             this.layoutTablePanel.RowCount = 1;
             this.layoutTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.4669F));
             this.layoutTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.5331F));
-            this.layoutTablePanel.Size = new System.Drawing.Size(734, 372);
+            this.layoutTablePanel.Size = new System.Drawing.Size(734, 412);
             this.layoutTablePanel.TabIndex = 0;
             // 
             // SideMenu
@@ -128,7 +132,7 @@
             this.SideMenu.Location = new System.Drawing.Point(0, 5);
             this.SideMenu.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.SideMenu.Name = "SideMenu";
-            this.SideMenu.Size = new System.Drawing.Size(76, 362);
+            this.SideMenu.Size = new System.Drawing.Size(76, 402);
             this.SideMenu.TabIndex = 1;
             this.SideMenu.Text = "colorSettings";
             // 
@@ -164,12 +168,16 @@
             this.ColorPanel.Controls.Add(this.SaveProfileButton);
             this.ColorPanel.Controls.Add(this.LoadProfileButton);
             this.ColorPanel.Controls.Add(this.DeleteProfileButton);
+            this.ColorPanel.Controls.Add(this.HotkeyLabel);
+            this.ColorPanel.Controls.Add(this.HotkeyText);
+            this.ColorPanel.Controls.Add(this.SetHotkeyButton);
+            this.ColorPanel.Controls.Add(this.ClearHotkeyButton);
             this.ColorPanel.Controls.Add(this.DVLGroupBox);
             this.ColorPanel.Controls.Add(this.colorGroupBox);
             this.ColorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ColorPanel.Location = new System.Drawing.Point(79, 3);
             this.ColorPanel.Name = "ColorPanel";
-            this.ColorPanel.Size = new System.Drawing.Size(652, 366);
+            this.ColorPanel.Size = new System.Drawing.Size(652, 406);
             this.ColorPanel.TabIndex = 2;
             // 
             // minimizeStartCheckBox
@@ -204,6 +212,7 @@
             this.ProfileCombo.Name = "ProfileCombo";
             this.ProfileCombo.Size = new System.Drawing.Size(96, 30);
             this.ProfileCombo.TabIndex = 30;
+            this.ProfileCombo.SelectedIndexChanged += new System.EventHandler(this.ProfileCombo_SelectedIndexChanged);
             //
             // SaveProfileButton
             //
@@ -240,6 +249,50 @@
             this.DeleteProfileButton.Text = "Del";
             this.DeleteProfileButton.UseVisualStyleBackColor = true;
             this.DeleteProfileButton.Click += new System.EventHandler(this.DeleteProfileButton_Click);
+            //
+            // HotkeyLabel
+            //
+            this.HotkeyLabel.AutoSize = true;
+            this.HotkeyLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.HotkeyLabel.Location = new System.Drawing.Point(5, 368);
+            this.HotkeyLabel.Name = "HotkeyLabel";
+            this.HotkeyLabel.Size = new System.Drawing.Size(60, 20);
+            this.HotkeyLabel.TabIndex = 34;
+            this.HotkeyLabel.Text = "Hotkey:";
+            //
+            // HotkeyText
+            //
+            this.HotkeyText.Location = new System.Drawing.Point(65, 365);
+            this.HotkeyText.Name = "HotkeyText";
+            this.HotkeyText.ReadOnly = true;
+            this.HotkeyText.Size = new System.Drawing.Size(98, 29);
+            this.HotkeyText.TabIndex = 35;
+            this.HotkeyText.Text = "None";
+            this.HotkeyText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            //
+            // SetHotkeyButton
+            //
+            this.SetHotkeyButton.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetHotkeyButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.SetHotkeyButton.Location = new System.Drawing.Point(167, 364);
+            this.SetHotkeyButton.Name = "SetHotkeyButton";
+            this.SetHotkeyButton.Size = new System.Drawing.Size(58, 30);
+            this.SetHotkeyButton.TabIndex = 36;
+            this.SetHotkeyButton.Text = "Set";
+            this.SetHotkeyButton.UseVisualStyleBackColor = true;
+            this.SetHotkeyButton.Click += new System.EventHandler(this.SetHotkeyButton_Click);
+            //
+            // ClearHotkeyButton
+            //
+            this.ClearHotkeyButton.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearHotkeyButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClearHotkeyButton.Location = new System.Drawing.Point(229, 364);
+            this.ClearHotkeyButton.Name = "ClearHotkeyButton";
+            this.ClearHotkeyButton.Size = new System.Drawing.Size(52, 30);
+            this.ClearHotkeyButton.TabIndex = 37;
+            this.ClearHotkeyButton.Text = "Clear";
+            this.ClearHotkeyButton.UseVisualStyleBackColor = true;
+            this.ClearHotkeyButton.Click += new System.EventHandler(this.ClearHotkeyButton_Click);
             //
             // DVLGroupBox
             // 
@@ -535,15 +588,17 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 372);
+            this.ClientSize = new System.Drawing.Size(734, 412);
             this.Controls.Add(this.layoutTablePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Tarkov Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.layoutTablePanel.ResumeLayout(false);
             this.SideMenu.ResumeLayout(false);
             this.SideMenu.PerformLayout();
@@ -602,6 +657,10 @@
         private System.Windows.Forms.Button SaveProfileButton;
         private System.Windows.Forms.Button LoadProfileButton;
         private System.Windows.Forms.Button DeleteProfileButton;
+        private System.Windows.Forms.Label HotkeyLabel;
+        private System.Windows.Forms.TextBox HotkeyText;
+        private System.Windows.Forms.Button SetHotkeyButton;
+        private System.Windows.Forms.Button ClearHotkeyButton;
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem enableToolStripMenuItem;

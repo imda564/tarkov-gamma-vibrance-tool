@@ -45,6 +45,9 @@ You can change any of the following color settings:
 ## Profiles
 Type a name in the box at the bottom-left and use **Save** / **Load** / **Del** to store and recall multiple sets of Brightness/Contrast/Gamma/Saturation (e.g. one profile per game or time of day). Profiles are stored in `settings.json` alongside your other settings.
 
+## Hotkeys
+Save a profile first, then click **Set** next to "Hotkey:" and press a key combination (e.g. `Ctrl+F9`) to bind it to that profile. The hotkey works globally — pressing it while EFT (or any other window) has focus instantly applies that profile's Brightness/Contrast/Gamma/Saturation. Use **Clear** to remove a profile's hotkey. If a combination is already used by another application, you'll get a warning and need to pick a different one.
+
 ## Warning
 1. It might blink couple times when you active EFT window but it works. Don't worry.
 2. **Disclaimer: I don't know BSG will ban for using this.**
@@ -64,7 +67,7 @@ Type a name in the box at the bottom-left and use **Save** / **Load** / **Del** 
 - [x] change display(monitor) target
 - [x] Minimize to tray
 - [x] Profiles
-- [ ] Hot Keys
+- [x] Hot Keys
 - [ ] EFT setting modify (Framelimit or Graphic Settings)
 
 Thanks for your support!
