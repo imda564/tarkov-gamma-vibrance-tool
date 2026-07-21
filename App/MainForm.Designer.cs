@@ -519,7 +519,7 @@
             // 
             this.trayIcon.ContextMenuStrip = this.trayMenuStrip;
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "Tarkov Settings";
+            this.trayIcon.Text = "tarkov-gamma-vibrance-tool";
             this.trayIcon.Visible = true;
             this.trayIcon.DoubleClick += new System.EventHandler(this.ShowForm);
             // 
@@ -595,7 +595,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Tarkov Settings";
+            this.Text = "tarkov-gamma-vibrance-tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);

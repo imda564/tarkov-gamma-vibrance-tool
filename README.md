@@ -6,7 +6,7 @@
 This is a maintained fork of [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings), which has had no updates since October 2023 and several unfixed crash reports. This fork fixes and adds:
 - Crashes when the NVIDIA display handle becomes invalid (RDP session change, closing NVIDIA Control Panel, monitor sleep/hotplug) — see upstream issues [#3](https://github.com/incheon-kim/tarkov-settings/issues/3) and [#17](https://github.com/incheon-kim/tarkov-settings/issues/17)
 - Settings not saving when closing the window with the title bar's X button (previously only saved via tray icon → Exit)
-- App crashing on a corrupted/invalid `tarkov-settings.config.json` (now resets to defaults with a warning instead)
+- App crashing on a corrupted/invalid `tarkov-gamma-vibrance-tool.config.json` (now resets to defaults with a warning instead)
 - Added `EscapeFromTarkovArena` to the default monitored process list — see upstream issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
 - Color profiles: save/load multiple named sets of Brightness/Contrast/Gamma/Saturation — see [Profiles](#profiles) below
 - Global hotkeys to switch profiles instantly, even while another window has focus — see [Hotkeys](#hotkeys) below — implements upstream's requested [#1](https://github.com/incheon-kim/tarkov-settings/issues/1) / [#12](https://github.com/incheon-kim/tarkov-settings/issues/12)
@@ -42,10 +42,10 @@ You can change any of the following color settings:
 3. Minimize and play EFT
 4. Close application if you want to deactivate
 
-**Settings are saved to `tarkov-settings.config.json` whenever you close the window or exit from the tray icon.**
+**Settings are saved to `tarkov-gamma-vibrance-tool.config.json` whenever you close the window or exit from the tray icon.**
 
 ## Profiles
-Type a name in the box at the bottom-left and use **Save** / **Load** / **Del** to store and recall multiple sets of Brightness/Contrast/Gamma/Saturation (e.g. one profile per game or time of day). Profiles are stored in `tarkov-settings.config.json` alongside your other settings.
+Type a name in the box at the bottom-left and use **Save** / **Load** / **Del** to store and recall multiple sets of Brightness/Contrast/Gamma/Saturation (e.g. one profile per game or time of day). Profiles are stored in `tarkov-gamma-vibrance-tool.config.json` alongside your other settings.
 
 ## Hotkeys
 Save a profile first, then click **Set** next to "Hotkey:" and press a key combination (e.g. `Ctrl+F9`) to bind it to that profile. The hotkey works globally — pressing it while EFT (or any other window) has focus instantly applies that profile's Brightness/Contrast/Gamma/Saturation. Use **Clear** to remove a profile's hotkey. If a combination is already used by another application, you'll get a warning and need to pick a different one.

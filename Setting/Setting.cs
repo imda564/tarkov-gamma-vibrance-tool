@@ -7,10 +7,10 @@ namespace tarkov_settings.Setting
 {
     internal class Settings<T> where T : new()
     {
-        private const string DEFAULT_FILENAME = "tarkov-settings.config.json";
-        // Old filename from before this app-specific name - migrated automatically
-        // so it doesn't look like a random, safe-to-delete file next to the exe.
-        private const string LEGACY_FILENAME = "settings.json";
+        private const string DEFAULT_FILENAME = "tarkov-gamma-vibrance-tool.config.json";
+        // Filenames used by older releases - migrated automatically so nobody's
+        // saved profiles/settings get lost when the app is renamed.
+        private static readonly string[] LEGACY_FILENAMES = { "tarkov-settings.config.json", "settings.json" };
 
         // Anchor to the exe's own folder instead of the process's current
         // working directory, which can differ from the exe's folder depending
@@ -47,11 +47,15 @@ namespace tarkov_settings.Setting
 
             if (!File.Exists(path))
             {
-                string legacyPath = ResolvePath(LEGACY_FILENAME);
-                if (File.Exists(legacyPath))
+                foreach (string legacyName in LEGACY_FILENAMES)
                 {
-                    try { File.Move(legacyPath, path); }
-                    catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException) { }
+                    string legacyPath = ResolvePath(legacyName);
+                    if (File.Exists(legacyPath))
+                    {
+                        try { File.Move(legacyPath, path); }
+                        catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException) { }
+                        break;
+                    }
                 }
             }
 

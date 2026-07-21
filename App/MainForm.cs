@@ -50,7 +50,7 @@ namespace tarkov_settings
             #endregion
             
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            this.Text = String.Format("Tarkov Settings {0}", version);
+            this.Text = String.Format("tarkov-gamma-vibrance-tool {0}", version);
             _ = new UpdateNotifier(version);
 
             // Saturation Initialize
@@ -134,7 +134,7 @@ namespace tarkov_settings
                 this.ShowInTaskbar = false;
                 this.trayIcon.ShowBalloonTip(
                     2500,
-                    "Tarkov Settings Initailized!",
+                    "tarkov-gamma-vibrance-tool Initailized!",
                     "Check out tray to modify your color setting",
                     ToolTipIcon.Info
                     );

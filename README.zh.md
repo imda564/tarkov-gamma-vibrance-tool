@@ -6,7 +6,7 @@
 本仓库是 [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings) 的维护分支。原项目自 2023 年 10 月起未再更新,且存在多个尚未修复的崩溃问题。此分支修复并新增了以下内容:
 - 当 NVIDIA 显示句柄失效时(远程桌面会话切换、关闭 NVIDIA 控制面板、显示器休眠/热插拔)导致的崩溃 —— 参见原仓库 issue [#3](https://github.com/incheon-kim/tarkov-settings/issues/3) 和 [#17](https://github.com/incheon-kim/tarkov-settings/issues/17)
 - 使用标题栏的 X 按钮关闭窗口时设置未保存的问题(此前只有通过托盘图标 → Exit 才会保存)
-- `tarkov-settings.config.json` 损坏或格式错误时应用崩溃的问题(现在会弹出警告并重置为默认值)
+- `tarkov-gamma-vibrance-tool.config.json` 损坏或格式错误时应用崩溃的问题(现在会弹出警告并重置为默认值)
 - 在默认监控进程列表中加入 `EscapeFromTarkovArena` —— 参见原仓库 issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
 - 配置文件功能:可将亮度/对比度/伽马/饱和度组合保存为多个命名配置并随时读取 —— 详见下方[配置文件](#配置文件profiles)
 - 用于切换配置文件的全局快捷键:即使其他窗口处于焦点状态也能立即切换 —— 详见下方[快捷键](#快捷键) —— 实现了原仓库 issue [#1](https://github.com/incheon-kim/tarkov-settings/issues/1)、[#12](https://github.com/incheon-kim/tarkov-settings/issues/12) 中提出的需求
@@ -42,10 +42,10 @@
 3. 最小化程序并游玩 EFT
 4. 如需停用效果,关闭程序即可
 
-**关闭窗口或从托盘图标退出时,设置会保存到 `tarkov-settings.config.json`。**
+**关闭窗口或从托盘图标退出时,设置会保存到 `tarkov-gamma-vibrance-tool.config.json`。**
 
 ## 配置文件(Profiles)
-在左下角的输入框中输入名称,使用 **Save** / **Load** / **Del** 按钮保存和读取多组亮度/对比度/伽马/饱和度数值(例如为不同游戏或不同时间段分别设置)。配置文件会和其他设置一起保存在 `tarkov-settings.config.json` 中。
+在左下角的输入框中输入名称,使用 **Save** / **Load** / **Del** 按钮保存和读取多组亮度/对比度/伽马/饱和度数值(例如为不同游戏或不同时间段分别设置)。配置文件会和其他设置一起保存在 `tarkov-gamma-vibrance-tool.config.json` 中。
 
 ## 快捷键
 先保存一个配置文件,然后点击 "Hotkey:" 旁边的 **Set** 按钮,按下你想要的组合键(例如 `Ctrl+F9`),即可将其绑定到该配置文件。该快捷键是全局生效的——即使 EFT(或任何其他窗口)处于焦点状态,按下组合键也会立即应用该配置文件的亮度/对比度/伽马/饱和度。使用 **Clear** 可以解除绑定。如果组合键已被其他程序占用,会弹出警告,请换一个组合。
