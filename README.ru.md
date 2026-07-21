@@ -3,11 +3,13 @@
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | Русский | [中文](README.zh.md) | [日本語](README.ja.md)
 
-Это поддерживаемый форк [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings), который не обновлялся с октября 2023 года и имеет несколько неисправленных отчётов о сбоях. В этом форке исправлено:
+Это поддерживаемый форк [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings), который не обновлялся с октября 2023 года и имеет несколько неисправленных отчётов о сбоях. В этом форке исправлено и добавлено:
 - Сбои при потере валидности дескриптора дисплея NVIDIA (смена RDP-сессии, закрытие панели управления NVIDIA, засыпание/переподключение монитора) — см. issue [#3](https://github.com/incheon-kim/tarkov-settings/issues/3) и [#17](https://github.com/incheon-kim/tarkov-settings/issues/17) в оригинальном репозитории
 - Настройки не сохранялись при закрытии окна кнопкой X в заголовке (раньше сохранение работало только через значок в трее → Exit)
 - Сбой приложения при повреждённом или некорректном `settings.json` (теперь сбрасывается на значения по умолчанию с предупреждением)
 - В список отслеживаемых процессов по умолчанию добавлен `EscapeFromTarkovArena` — см. issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
+- Профили цвета: сохранение и загрузка нескольких именованных наборов Яркости/Контраста/Гаммы/Насыщенности — см. раздел [Профили](#профили) ниже
+- Глобальные горячие клавиши для мгновенного переключения профилей, даже когда в фокусе другое окно — см. раздел [Горячие клавиши](#горячие-клавиши) ниже — реализует то, что запрашивалось в issue [#1](https://github.com/incheon-kim/tarkov-settings/issues/1) и [#12](https://github.com/incheon-kim/tarkov-settings/issues/12)
 
 ## [->**Скачать последнюю версию**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 

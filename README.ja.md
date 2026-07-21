@@ -3,11 +3,13 @@
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [中文](README.zh.md) | 日本語
 
-このリポジトリは [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings) のメンテナンス継続フォークです。本家は2023年10月以降更新が止まっており、未解決のクラッシュ報告も複数残っています。このフォークで修正した内容は以下の通りです:
+このリポジトリは [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings) のメンテナンス継続フォークです。本家は2023年10月以降更新が止まっており、未解決のクラッシュ報告も複数残っています。このフォークで修正・追加した内容は以下の通りです:
 - NVIDIAのディスプレイハンドルが無効になった際(リモートデスクトップのセッション切り替え、NVIDIAコントロールパネルを閉じる、モニターのスリープ/ホットプラグ)に発生していたクラッシュ — 本家issue [#3](https://github.com/incheon-kim/tarkov-settings/issues/3)、[#17](https://github.com/incheon-kim/tarkov-settings/issues/17) 参照
 - タイトルバーのXボタンでウィンドウを閉じた際に設定が保存されない問題(従来はトレイアイコン→Exitからのみ保存)
 - `settings.json` が壊れている/不正な場合にアプリがクラッシュしていた問題(現在は警告を表示してデフォルト設定にリセット)
 - デフォルトの監視対象プロセスに `EscapeFromTarkovArena` を追加 — 本家issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23) 参照
+- プロファイル機能: 明るさ・コントラスト・ガンマ・彩度の組み合わせを複数名前を付けて保存・呼び出し — 下記[プロファイル](#プロファイル)参照
+- プロファイル切り替え用のグローバルホットキー: 他のウィンドウがフォーカスされていても即座に切り替え — 下記[ホットキー](#ホットキー)参照 — 本家issue [#1](https://github.com/incheon-kim/tarkov-settings/issues/1)、[#12](https://github.com/incheon-kim/tarkov-settings/issues/12) で要望されていた機能
 
 ## [->**最新版をダウンロード**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 

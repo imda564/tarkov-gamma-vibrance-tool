@@ -3,11 +3,13 @@
 
 **Language:** English | [한국어](README.ko.md) | [Русский](README.ru.md) | [中文](README.zh.md) | [日本語](README.ja.md)
 
-This is a maintained fork of [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings), which has had no updates since October 2023 and several unfixed crash reports. This fork fixes:
+This is a maintained fork of [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings), which has had no updates since October 2023 and several unfixed crash reports. This fork fixes and adds:
 - Crashes when the NVIDIA display handle becomes invalid (RDP session change, closing NVIDIA Control Panel, monitor sleep/hotplug) — see upstream issues [#3](https://github.com/incheon-kim/tarkov-settings/issues/3) and [#17](https://github.com/incheon-kim/tarkov-settings/issues/17)
 - Settings not saving when closing the window with the title bar's X button (previously only saved via tray icon → Exit)
 - App crashing on a corrupted/invalid `settings.json` (now resets to defaults with a warning instead)
 - Added `EscapeFromTarkovArena` to the default monitored process list — see upstream issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
+- Color profiles: save/load multiple named sets of Brightness/Contrast/Gamma/Saturation — see [Profiles](#profiles) below
+- Global hotkeys to switch profiles instantly, even while another window has focus — see [Hotkeys](#hotkeys) below — implements upstream's requested [#1](https://github.com/incheon-kim/tarkov-settings/issues/1) / [#12](https://github.com/incheon-kim/tarkov-settings/issues/12)
 
 ## [->**DOWNLOAD Latest**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 

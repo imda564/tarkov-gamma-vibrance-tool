@@ -3,11 +3,13 @@
 
 **Language:** [English](README.md) | 한국어 | [Русский](README.ru.md) | [中文](README.zh.md) | [日本語](README.ja.md)
 
-이 저장소는 [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings)의 유지보수 포크입니다. 원본은 2023년 10월 이후 업데이트가 없고, 해결되지 않은 크래시 이슈가 여러 개 남아있습니다. 이 포크에서 수정한 내용은 다음과 같습니다:
+이 저장소는 [incheon-kim/tarkov-settings](https://github.com/incheon-kim/tarkov-settings)의 유지보수 포크입니다. 원본은 2023년 10월 이후 업데이트가 없고, 해결되지 않은 크래시 이슈가 여러 개 남아있습니다. 이 포크에서 수정/추가한 내용은 다음과 같습니다:
 - NVIDIA 디스플레이 핸들이 무효화될 때(원격 데스크톱 세션 전환, NVIDIA 제어판 닫기, 모니터 절전/핫플러그) 발생하던 크래시 — 원본 이슈 [#3](https://github.com/incheon-kim/tarkov-settings/issues/3), [#17](https://github.com/incheon-kim/tarkov-settings/issues/17) 참고
 - 타이틀바 X 버튼으로 창을 닫을 때 설정이 저장되지 않던 문제 (기존에는 트레이 아이콘 → Exit 로만 저장됨)
 - `settings.json`이 손상되거나 잘못된 경우 앱이 크래시하던 문제 (이제는 경고 후 기본값으로 리셋)
 - 기본 감시 프로세스 목록에 `EscapeFromTarkovArena` 추가 — 원본 이슈 [#23](https://github.com/incheon-kim/tarkov-settings/issues/23) 참고
+- 프로필 기능: 밝기/대비/감마/채도 조합을 이름 붙여 여러 개 저장하고 불러오기 — 아래 [프로필](#프로필) 참고
+- 프로필 전환용 전역 단축키: 다른 창에 포커스가 있어도 즉시 전환 — 아래 [단축키](#단축키) 참고 — 원본 이슈 [#1](https://github.com/incheon-kim/tarkov-settings/issues/1), [#12](https://github.com/incheon-kim/tarkov-settings/issues/12)에서 요청되던 기능
 
 ## [->**최신 버전 다운로드**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 
