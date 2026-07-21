@@ -169,7 +169,15 @@ namespace tarkov_settings
             {
                 gpu.ResetSaturation();
                 Console.WriteLine("[DVL] Reset to : {0}", gpu.InitSaturation);
-            }catch (NotImplementedException){ }
+            }
+            catch (NotImplementedException) { }
+            // Display handle can become invalid (RDP session change, driver reset,
+            // monitor sleep/hotplug, NVIDIA Control Panel churn) - must not crash
+            // the WinEventHook callback that calls this (see GitHub issues #3, #17).
+            catch (NvAPIWrapper.Native.Exceptions.NVIDIAApiException)
+            {
+                Console.WriteLine("[DVL] Reset failed - NVIDIA API unavailable");
+            }
         }
 
         internal void Close()

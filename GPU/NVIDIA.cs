@@ -50,8 +50,16 @@ namespace tarkov_settings.GPU
                 if (value < this.MinSaturation)
                     value = this.MinSaturation;
 
-                DisplayApi.SetDVCLevel(displayHandle, value);
-                this.currentSaturation = value;
+                try
+                {
+                    DisplayApi.SetDVCLevel(displayHandle, value);
+                    this.currentSaturation = value;
+                }
+                catch (NvAPIWrapper.Native.Exceptions.NVIDIAApiException)
+                {
+                    // Display handle went stale (RDP, driver reset, monitor hotplug).
+                    // Swallow instead of crashing the caller (often a WinEventHook callback).
+                }
             }
         }
 
@@ -74,11 +82,19 @@ namespace tarkov_settings.GPU
         }
 
         public void Load(string display) {
-            displayHandle = DisplayApi.GetAssociatedNvidiaDisplayHandle(display);
-            PrivateDisplayDVCInfo dvcInfo = DisplayApi.GetDVCInfo(displayHandle);
-            this._maxSaturation = dvcInfo.MaximumLevel;
-            this._minSaturation = dvcInfo.MinimumLevel;
-            this._initSaturation = this.currentSaturation = dvcInfo.CurrentLevel;
+            try
+            {
+                displayHandle = DisplayApi.GetAssociatedNvidiaDisplayHandle(display);
+                PrivateDisplayDVCInfo dvcInfo = DisplayApi.GetDVCInfo(displayHandle);
+                this._maxSaturation = dvcInfo.MaximumLevel;
+                this._minSaturation = dvcInfo.MinimumLevel;
+                this._initSaturation = this.currentSaturation = dvcInfo.CurrentLevel;
+            }
+            catch (NvAPIWrapper.Native.Exceptions.NVIDIAApiException)
+            {
+                // No valid NVIDIA display handle for this monitor right now
+                // (e.g. mid RDP session). Leave previous values in place.
+            }
         }
 
         public void Close() {

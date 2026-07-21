@@ -174,7 +174,7 @@ namespace tarkov_settings
             this.ShowInTaskbar = true;
         }
 
-        private void ExitFormClicked(object sender, EventArgs e)
+        private void SaveAppSettings()
         {
             appSetting.brightness = Brightness;
             appSetting.contrast = Contrast;
@@ -183,7 +183,11 @@ namespace tarkov_settings
             appSetting.display = (string)DisplayCombo.SelectedItem;
             appSetting.minimizeOnStart = minimizeOnStart;
             appSetting.Save();
+        }
 
+        private void ExitFormClicked(object sender, EventArgs e)
+        {
+            SaveAppSettings();
             Application.Exit();
         }
 
@@ -191,6 +195,10 @@ namespace tarkov_settings
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                // Persist settings here too - most users close the window with the
+                // X button and never learn about "Exit" in the tray menu, so relying
+                // on that path alone made changes look like they never saved.
+                SaveAppSettings();
                 e.Cancel = true;
                 this.Hide();
             }
