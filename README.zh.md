@@ -1,4 +1,4 @@
-# Tarkov Settings (维护中的分支)
+# EFT 伽马/色彩鲜艳度自动调节工具(原名 tarkov-settings-fixed)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | 中文 | [日本語](README.ja.md)
@@ -9,7 +9,7 @@
 - `settings.json` 损坏或格式错误时应用崩溃的问题(现在会弹出警告并重置为默认值)
 - 在默认监控进程列表中加入 `EscapeFromTarkovArena` —— 参见原仓库 issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
 
-## [->**下载最新版本**<-](https://github.com/imda564/tarkov-settings-fixed/releases/latest)
+## [->**下载最新版本**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 
 自动为 [Escape from Tarkov](https://escapefromtarkov.com) 调整显示颜色设置。
 

@@ -1,4 +1,4 @@
-# Tarkov Settings (유지보수 포크)
+# 타르코프 감마·바이브런스 자동 조절 툴 (구 tarkov-settings-fixed)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | 한국어 | [Русский](README.ru.md) | [中文](README.zh.md) | [日本語](README.ja.md)
@@ -9,7 +9,7 @@
 - `settings.json`이 손상되거나 잘못된 경우 앱이 크래시하던 문제 (이제는 경고 후 기본값으로 리셋)
 - 기본 감시 프로세스 목록에 `EscapeFromTarkovArena` 추가 — 원본 이슈 [#23](https://github.com/incheon-kim/tarkov-settings/issues/23) 참고
 
-## [->**최신 버전 다운로드**<-](https://github.com/imda564/tarkov-settings-fixed/releases/latest)
+## [->**최신 버전 다운로드**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 
 [Escape from Tarkov](https://escapefromtarkov.com)의 색상 설정을 자동으로 변경합니다.
 

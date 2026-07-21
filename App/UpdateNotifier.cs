@@ -10,8 +10,8 @@ namespace tarkov_settings
 
         // Utilize repository's file as version notifier
         // I know it sounds very dangerous. but i am broke as hell.
-        private string downloadUrl = @"https://github.com/imda564/tarkov-settings/releases/latest";
-        private string checkUrl = @"https://raw.githubusercontent.com/imda564/tarkov-settings/main/version";
+        private string downloadUrl = @"https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest";
+        private string checkUrl = @"https://raw.githubusercontent.com/imda564/tarkov-gamma-vibrance-tool/main/version";
         public UpdateNotifier(Version current)
         {
             InitializeComponent();
@@ -44,7 +44,7 @@ namespace tarkov_settings
                     UpdateNotifyLabel.Text = "Update Check Failure\nPlease Visit Github Repository";
                     latestLabel.Visible = LatestVersionLabel.Visible = false;
                     UpdateButton.Text = "Visit";
-                    downloadUrl = @"https://github.com/imda564/tarkov-settings";
+                    downloadUrl = @"https://github.com/imda564/tarkov-gamma-vibrance-tool";
                     this.ShowDialog();
                 }
             }

@@ -1,4 +1,4 @@
-# Tarkov Settings (メンテナンス継続フォーク)
+# EFT ガンマ・彩度自動調整ツール(旧称:tarkov-settings-fixed)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [中文](README.zh.md) | 日本語
@@ -9,7 +9,7 @@
 - `settings.json` が壊れている/不正な場合にアプリがクラッシュしていた問題(現在は警告を表示してデフォルト設定にリセット)
 - デフォルトの監視対象プロセスに `EscapeFromTarkovArena` を追加 — 本家issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23) 参照
 
-## [->**最新版をダウンロード**<-](https://github.com/imda564/tarkov-settings-fixed/releases/latest)
+## [->**最新版をダウンロード**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 
 [Escape from Tarkov](https://escapefromtarkov.com) の画面色設定を自動的に変更します。
 

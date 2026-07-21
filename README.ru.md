@@ -1,4 +1,4 @@
-# Tarkov Settings (поддерживаемый форк)
+# Инструмент авто-гаммы и вайбранса для Tarkov (ранее tarkov-settings-fixed)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | Русский | [中文](README.zh.md) | [日本語](README.ja.md)
@@ -9,7 +9,7 @@
 - Сбой приложения при повреждённом или некорректном `settings.json` (теперь сбрасывается на значения по умолчанию с предупреждением)
 - В список отслеживаемых процессов по умолчанию добавлен `EscapeFromTarkovArena` — см. issue [#23](https://github.com/incheon-kim/tarkov-settings/issues/23)
 
-## [->**Скачать последнюю версию**<-](https://github.com/imda564/tarkov-settings-fixed/releases/latest)
+## [->**Скачать последнюю версию**<-](https://github.com/imda564/tarkov-gamma-vibrance-tool/releases/latest)
 
 Автоматически меняет настройки цвета для [Escape from Tarkov](https://escapefromtarkov.com).
 
