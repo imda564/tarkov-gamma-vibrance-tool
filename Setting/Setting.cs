@@ -7,7 +7,10 @@ namespace tarkov_settings.Setting
 {
     internal class Settings<T> where T : new()
     {
-        private const string DEFAULT_FILENAME = "settings.json";
+        private const string DEFAULT_FILENAME = "tarkov-settings.config.json";
+        // Old filename from before this app-specific name - migrated automatically
+        // so it doesn't look like a random, safe-to-delete file next to the exe.
+        private const string LEGACY_FILENAME = "settings.json";
 
         // Anchor to the exe's own folder instead of the process's current
         // working directory, which can differ from the exe's folder depending
@@ -41,6 +44,17 @@ namespace tarkov_settings.Setting
         public static T Load(string fileName = DEFAULT_FILENAME)
         {
             string path = ResolvePath(fileName);
+
+            if (!File.Exists(path))
+            {
+                string legacyPath = ResolvePath(LEGACY_FILENAME);
+                if (File.Exists(legacyPath))
+                {
+                    try { File.Move(legacyPath, path); }
+                    catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException) { }
+                }
+            }
+
             T t = new T();
             try
             {
@@ -54,7 +68,7 @@ namespace tarkov_settings.Setting
             catch (JsonException ex)
             {
                 MessageBox.Show(
-                    $"settings.json is invalid and will be reset to defaults:\n\n{ex.Message}",
+                    $"{Path.GetFileName(path)} is invalid and will be reset to defaults:\n\n{ex.Message}",
                     "Settings Load Failed",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
