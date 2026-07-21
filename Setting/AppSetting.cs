@@ -18,5 +18,6 @@ namespace tarkov_settings.Setting
         };
         public string display = @"\\.\DISPLAY1";
         public bool minimizeOnStart = false;
+        public Dictionary<string, ColorProfile> profiles = new Dictionary<string, ColorProfile>();
     }
 }

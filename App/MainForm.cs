@@ -58,6 +58,13 @@ namespace tarkov_settings
                 pMonitor.Add(pTarget.ToLower());
             }
             pMonitor.Init();
+
+            #region Initialize Profiles
+            foreach (string name in appSetting.profiles.Keys)
+            {
+                ProfileCombo.Items.Add(name);
+            }
+            #endregion
         }
 
         #region BCGS Getter/Setter
@@ -165,6 +172,56 @@ namespace tarkov_settings
             {
                 DisplayCombo.SelectedIndex = DisplayCombo.FindString(Display.Primary);
             }
+        }
+
+        private void SaveProfileButton_Click(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            if (name.Length == 0)
+            {
+                MessageBox.Show("Type a profile name in the box before saving.", "Save Profile", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            appSetting.profiles[name] = new ColorProfile
+            {
+                brightness = Brightness,
+                contrast = Contrast,
+                gamma = Gamma,
+                saturation = DVL
+            };
+            appSetting.Save();
+
+            if (ProfileCombo.FindStringExact(name) == -1)
+                ProfileCombo.Items.Add(name);
+        }
+
+        private void LoadProfileButton_Click(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            if (!appSetting.profiles.TryGetValue(name, out ColorProfile profile))
+            {
+                MessageBox.Show(String.Format("No saved profile named \"{0}\".", name), "Load Profile", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Brightness = profile.brightness;
+            Contrast = profile.contrast;
+            Gamma = profile.gamma;
+            DVL = profile.saturation;
+        }
+
+        private void DeleteProfileButton_Click(object sender, EventArgs e)
+        {
+            string name = ProfileCombo.Text.Trim();
+            if (!appSetting.profiles.Remove(name))
+                return;
+
+            appSetting.Save();
+            int index = ProfileCombo.FindStringExact(name);
+            if (index != -1)
+                ProfileCombo.Items.RemoveAt(index);
+            ProfileCombo.Text = "";
         }
         #endregion
 

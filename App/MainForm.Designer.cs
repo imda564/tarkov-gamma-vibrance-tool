@@ -37,6 +37,10 @@
             this.ColorPanel = new System.Windows.Forms.Panel();
             this.minimizeStartCheckBox = new System.Windows.Forms.CheckBox();
             this.DisplayCombo = new System.Windows.Forms.ComboBox();
+            this.ProfileCombo = new System.Windows.Forms.ComboBox();
+            this.SaveProfileButton = new System.Windows.Forms.Button();
+            this.LoadProfileButton = new System.Windows.Forms.Button();
+            this.DeleteProfileButton = new System.Windows.Forms.Button();
             this.DVLGroupBox = new System.Windows.Forms.GroupBox();
             this.DVLPanel = new System.Windows.Forms.Panel();
             this.DVLLabel = new System.Windows.Forms.Label();
@@ -156,6 +160,10 @@
             // 
             this.ColorPanel.Controls.Add(this.minimizeStartCheckBox);
             this.ColorPanel.Controls.Add(this.DisplayCombo);
+            this.ColorPanel.Controls.Add(this.ProfileCombo);
+            this.ColorPanel.Controls.Add(this.SaveProfileButton);
+            this.ColorPanel.Controls.Add(this.LoadProfileButton);
+            this.ColorPanel.Controls.Add(this.DeleteProfileButton);
             this.ColorPanel.Controls.Add(this.DVLGroupBox);
             this.ColorPanel.Controls.Add(this.colorGroupBox);
             this.ColorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -187,7 +195,52 @@
             this.DisplayCombo.Size = new System.Drawing.Size(139, 30);
             this.DisplayCombo.TabIndex = 15;
             this.DisplayCombo.SelectedValueChanged += new System.EventHandler(this.DisplayCombo_SelectedValueChanged);
-            // 
+            //
+            // ProfileCombo
+            //
+            this.ProfileCombo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ProfileCombo.FormattingEnabled = true;
+            this.ProfileCombo.Location = new System.Drawing.Point(5, 326);
+            this.ProfileCombo.Name = "ProfileCombo";
+            this.ProfileCombo.Size = new System.Drawing.Size(96, 30);
+            this.ProfileCombo.TabIndex = 30;
+            //
+            // SaveProfileButton
+            //
+            this.SaveProfileButton.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveProfileButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.SaveProfileButton.Location = new System.Drawing.Point(105, 326);
+            this.SaveProfileButton.Name = "SaveProfileButton";
+            this.SaveProfileButton.Size = new System.Drawing.Size(58, 30);
+            this.SaveProfileButton.TabIndex = 31;
+            this.SaveProfileButton.Text = "Save";
+            this.SaveProfileButton.UseVisualStyleBackColor = true;
+            this.SaveProfileButton.Click += new System.EventHandler(this.SaveProfileButton_Click);
+            //
+            // LoadProfileButton
+            //
+            this.LoadProfileButton.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadProfileButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LoadProfileButton.Location = new System.Drawing.Point(167, 326);
+            this.LoadProfileButton.Name = "LoadProfileButton";
+            this.LoadProfileButton.Size = new System.Drawing.Size(58, 30);
+            this.LoadProfileButton.TabIndex = 32;
+            this.LoadProfileButton.Text = "Load";
+            this.LoadProfileButton.UseVisualStyleBackColor = true;
+            this.LoadProfileButton.Click += new System.EventHandler(this.LoadProfileButton_Click);
+            //
+            // DeleteProfileButton
+            //
+            this.DeleteProfileButton.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteProfileButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DeleteProfileButton.Location = new System.Drawing.Point(229, 326);
+            this.DeleteProfileButton.Name = "DeleteProfileButton";
+            this.DeleteProfileButton.Size = new System.Drawing.Size(52, 30);
+            this.DeleteProfileButton.TabIndex = 33;
+            this.DeleteProfileButton.Text = "Del";
+            this.DeleteProfileButton.UseVisualStyleBackColor = true;
+            this.DeleteProfileButton.Click += new System.EventHandler(this.DeleteProfileButton_Click);
+            //
             // DVLGroupBox
             // 
             this.DVLGroupBox.Controls.Add(this.DVLPanel);
@@ -545,6 +598,10 @@
         private System.Windows.Forms.GroupBox DVLGroupBox;
         private System.Windows.Forms.Panel DVLPanel;
         private System.Windows.Forms.ComboBox DisplayCombo;
+        private System.Windows.Forms.ComboBox ProfileCombo;
+        private System.Windows.Forms.Button SaveProfileButton;
+        private System.Windows.Forms.Button LoadProfileButton;
+        private System.Windows.Forms.Button DeleteProfileButton;
         private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.ContextMenuStrip trayMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem enableToolStripMenuItem;

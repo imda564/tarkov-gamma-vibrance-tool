@@ -42,6 +42,9 @@ You can change any of the following color settings:
 
 **Settings are saved to `settings.json` whenever you close the window or exit from the tray icon.**
 
+## Profiles
+Type a name in the box at the bottom-left and use **Save** / **Load** / **Del** to store and recall multiple sets of Brightness/Contrast/Gamma/Saturation (e.g. one profile per game or time of day). Profiles are stored in `settings.json` alongside your other settings.
+
 ## Warning
 1. It might blink couple times when you active EFT window but it works. Don't worry.
 2. **Disclaimer: I don't know BSG will ban for using this.**
@@ -60,7 +63,7 @@ You can change any of the following color settings:
 - [x] Process Changeability (Not only for EscapeFromTarkov)
 - [x] change display(monitor) target
 - [x] Minimize to tray
-- [ ] Profiles
+- [x] Profiles
 - [ ] Hot Keys
 - [ ] EFT setting modify (Framelimit or Graphic Settings)
 

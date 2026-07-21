@@ -261,6 +261,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Setting\AppSetting.cs" />
+    <Compile Include="Setting\ColorProfile.cs" />
     <Compile Include="Setting\Setting.cs" />
     <Compile Include="Setting\Resolution.cs" />
     <Compile Include="Setting\TarkovSetting.cs" />
