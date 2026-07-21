@@ -1,4 +1,4 @@
-# EFT ガンマ・彩度自動調整ツール(旧称:tarkov-settings-fixed)
+# EFT ガンマ・彩度自動調整ツール(旧称:tarkov-settings)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [中文](README.zh.md) | 日本語

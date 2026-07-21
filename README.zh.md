@@ -1,4 +1,4 @@
-# EFT 伽马/色彩鲜艳度自动调节工具(原名 tarkov-settings-fixed)
+# EFT 伽马/色彩鲜艳度自动调节工具(原名 tarkov-settings)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | 中文 | [日本語](README.ja.md)

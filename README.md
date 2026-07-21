@@ -1,4 +1,4 @@
-# Tarkov Gamma & Vibrance Tool (formerly tarkov-settings-fixed)
+# Tarkov Gamma & Vibrance Tool (formerly tarkov-settings)
 ![screenshot](./1.png)
 
 **Language:** English | [한국어](README.ko.md) | [Русский](README.ru.md) | [中文](README.zh.md) | [日本語](README.ja.md)

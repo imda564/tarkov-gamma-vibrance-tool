@@ -1,4 +1,4 @@
-# 타르코프 감마·바이브런스 자동 조절 툴 (구 tarkov-settings-fixed)
+# 타르코프 감마·바이브런스 자동 조절 툴 (구 tarkov-settings)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | 한국어 | [Русский](README.ru.md) | [中文](README.zh.md) | [日本語](README.ja.md)

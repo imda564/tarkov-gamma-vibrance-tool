@@ -1,4 +1,4 @@
-# Инструмент авто-гаммы и вайбранса для Tarkov (ранее tarkov-settings-fixed)
+# Инструмент авто-гаммы и вайбранса для Tarkov (ранее tarkov-settings)
 ![screenshot](./1.png)
 
 **Language:** [English](README.md) | [한국어](README.ko.md) | Русский | [中文](README.zh.md) | [日本語](README.ja.md)
